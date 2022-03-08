@@ -1,0 +1,22 @@
+{
+"createUser":{
+    "email": "test@gmail.com",
+    "password":"password",
+    "confirmPassword": "password",
+    "firstname":"test",
+    "lastname":"test",
+    "othernames":"test",
+    "phonenumber":"080",
+    "gender":"M",
+    "dob":"1-1-1",
+    "department":"test",
+    "imageUrl":"test",
+    "datejoined":"test"
+},
+
+"signin":{
+    "email": "test@gmail.com",
+    "password":"password"
+}
+
+}
