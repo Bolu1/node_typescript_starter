@@ -1,16 +1,17 @@
-import colors from 'colors'
-const express = require ('express')
+const colors = require ('colors')
+import express,{Request, Response, NextFunction} from 'express'
 const bodyParser = require('body-parser')
 const logger = require('./utils/logger')
 const v1 = require('./routes/index')
 const cors = require('cors')
-const db = require('./utils/connect')
-const DB = require('./utils/crud')
+const sql = require('./utils/connect')
+// const DB = require('./utils/crud')
 const helmet = require('helmet')
-import config = require('config')
+const config = require('config')
 const deserializeUser = require ('./middleware/deserializeUser')
 // const {startMetricsServer} = require('../src/utils/metrics')
 const swaggerDocs  = require('./utils/swagger')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -18,8 +19,9 @@ const app = express()
 app.use(cors())
 app.use(deserializeUser)
 app.use(helmet())
+app.use(morgan('dev'))
 
-db.connect((err:any)=>{
+sql.connect((err:any)=>{
     if(err){
         throw err
     }
@@ -38,15 +40,26 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //main routes
 app.use('/v1', v1)
 //database routes
-app.use('/db', DB)
+// app.use('/db', DB)
 
 // startMetricsServer()
-const PORT = config.get<number>('port') || 8080
+app.use((req:Request,res:Response,next:NextFunction)=>{
+    const error = new Error('Not Found')
+    res.status(404)
+    next(error)
+})
+
+app.use((error:any ,req:Request,res:Response,next:NextFunction)=>{
+   res.status(error.status || 500)
+   res.send(error.message)
+})
+
+const PORT = process.env.PORT|| 8080
 
 app.listen(PORT, ()=>{
     
     swaggerDocs(app, PORT)
-    logger.info(colors.random(`Application Listening at https://localhost:${PORT}`))
+    logger.info(colors.random(`Application Listening at http://localhost:${PORT}`))
 })
 
 module.exports = app

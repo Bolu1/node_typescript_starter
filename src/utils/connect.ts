@@ -4,7 +4,6 @@ const mysql = require('mysql')
 const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
-    password : 'evans',
-    database : 'bluesprint-erp'
+    database : 'npg'
 })
 module.exports = db

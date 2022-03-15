@@ -17,27 +17,9 @@ export const createUserSchema = object({
         lastname:string({
             required_error:'LastName is  required'
         }),
-        othernames:string({
-            required_error:'OtherName is  required'
-        }),
-        phonenumber:string({
-            required_error:'phonenumber is  required'
-        }),
-        gender:string({
-            required_error:'gender is  required'
-        }),
-        dob:string({
-            required_error:'dateofbirth is  required'
-        }),
-        department:string({
-            required_error:'department is  required'
-        }),
-        imageUrl:string({
-            required_error:'photograph is  required'
-        }),
-        datejoined: string({
-            required_error:'datejoined is  required'
-        })
+       phone:string({
+           required_error:'Phone number is required'
+       })
     })
 })
 

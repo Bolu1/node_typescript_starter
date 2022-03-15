@@ -1,22 +1,28 @@
 {
 "createUser":{
-    "email": "test@gmail.com",
-    "password":"password",
-    "confirmPassword": "password",
-    "firstname":"test",
-    "lastname":"test",
-    "othernames":"test",
-    "phonenumber":"080",
-    "gender":"M",
-    "dob":"1-1-1",
-    "department":"test",
-    "imageUrl":"test",
-    "datejoined":"test"
+    "email":"adetifaboluwatife@gmail.com",
+    "password":"hashedPassword",
+    "confirmPassword":"hashedPassword",
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "phone": "phone"
 },
 
 "signin":{
     "email": "test@gmail.com",
     "password":"password"
+},
+
+"addProduct":{
+    "name": "test",
+    "price": 12,
+     "quantity": 10,
+     "description": "test",
+     "colors": "test, test, test",
+     "sizes": "test",
+     "image1": "test",
+     "image2": "test",
+     "image3": "test"
 }
 
 }
